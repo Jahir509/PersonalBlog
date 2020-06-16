@@ -17,7 +17,7 @@ Route::get('/', function () {
     return redirect()->route('blog.index');
 });
 
-Route::get('blog','BlogController@index')->name('blog.index');
-Route::get('blog/{id}','BlogController@show')->name('blog.show');
+ Route::get('blog','BlogController@index')->name('blog.index');
+ Route::get('blog/{post}','BlogController@show')->name('blog.show');
 
 

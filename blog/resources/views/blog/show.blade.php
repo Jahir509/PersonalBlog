@@ -14,6 +14,7 @@
                 <div class="post-item-body">
                     <div class="padding-10">
                         <h1>{{ $post->title}}</h1>
+                        {!! $post->excerpt_html !!}
 
                         <div class="post-meta no-border">
                             <ul class="post-meta-group">
@@ -24,7 +25,8 @@
                             </ul>
                         </div>
 
-                        {{ $post->body }}
+                        {{-- {!! Markdown::convertToHtml(e($post->body)) !!} --}}
+                        {!!$post->body_html!!}
                     </div>
                 </div>
             </article>

@@ -18,7 +18,7 @@ class PostSeeder extends Seeder
 
         $posts = [];
         $faker = Factory::create();
-        $date = Carbon::create(2020,6,1,9);  //Y-M-D Hour
+        $date = Carbon::create(2020,6,12,9);  //Y-M-D Hour
         
 
         for($i=0;$i<10;$i++){
