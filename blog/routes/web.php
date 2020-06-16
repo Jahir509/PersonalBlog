@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('blog.index');
 });
-Route::resources([
-    '/blog' => 'BlogController'
-]);
+
+Route::get('blog','BlogController@index')->name('blog.index');
+Route::get('blog/{id}','BlogController@show')->name('blog.show');
 
 
