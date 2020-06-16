@@ -1,53 +1,56 @@
 @extends('layouts.main')
-@section('title', 'My BLog || All Post')
+
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            @foreach ($posts as $post)
-                <article class="post-item">
-                   @if ($post->image_url)
-                   <div class="post-item-image">
-                        <a href="post.html">
-                        <img src="{{ $post->image_url }}" alt="{{$post->image}}">
-                        </a>
-                    </div>
-                   @endif
-                    <div class="post-item-body">
-                        <div class="padding-10">
-                            <h2><a href="#">{{ $post->title }}</a></h2>
-                            <p>{{ $post->excerpt}}</p>
-                        </div>
 
-                        <div class="post-meta padding-10 clearfix">
-                            <div class="pull-left">
-                                <ul class="post-meta-group">
-                                    <li><i class="fa fa-user"></i><a href="#"> {{ $post->author->name }}</a></li>
-                                    <li><i class="fa fa-clock-o"></i><time> {{ $post->date }}</time></li>
-                                    <li><i class="fa fa-tags"></i><a href="#"> Blog</a></li>
-                                    <li><i class="fa fa-comments"></i><a href="#">4 Comments</a></li>
-                                </ul>
-                            </div>
-                            <div class="pull-right">
-                                <a href="post.html">Continue Reading &raquo;</a>
-                            </div>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                @if (! $posts->count())
+                    <div class="alert alert-warning">
+                        <p>Nothing Found</p>
                     </div>
-                </article>  
-            @endforeach
+                @else
+                @foreach($posts as $post)
+                    <article class="post-item">
+                        @if ($post->image_url)
+                            <div class="post-item-image">
+                                <a href="#">
+                                    <img src="{{ $post->image_url }}" alt="">
+                                </a>                                </div>
+                        @endif
+                            <div class="post-item-body">
+                                <div class="padding-10">
+                                    <h2><a href="#">{{ $post->title }}</a></h2>
+                                    {!! $post->excerpt_html !!}
+                                </div>
 
-            <nav>
-              {{-- <ul class="pager">
-                <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Newer</a></li>
-                <li class="next"><a href="#">Older <span aria-hidden="true">&rarr;</span></a></li>
-              </ul> --}}
-              <ul class="pager">
-                {{ $posts->links() }}
-              </ul>
-            </nav>
-            
+                                <div class="post-meta padding-10 clearfix">
+                                    <div class="pull-left">
+                                        <ul class="post-meta-group">
+                                            <li><i class="fa fa-user"></i><a href="#"> {{ $post->author->name }}</a></li>
+                                            <li><i class="fa fa-clock-o"></i><time> {{ $post->date }}</time></li>
+                                            <li><i class="fa fa-folder"></i><a href="#"> ABC</a></li>
+                                            <li><i class="fa fa-comments"></i><a href="#">4 Comments</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#">Continue Reading &raquo;</a>
+                                    </div>
+                                </div>
+                            </div>
+                    </article>
+
+                @endforeach
+
+                @endif
+
+                <nav>
+                  {{ $posts->links() }}
+                </nav>
+            </div>
+
+            @include('layouts.sidebar')
         </div>
-        @include('layouts.sidebar')
     </div>
-</div>
+
 @endsection
