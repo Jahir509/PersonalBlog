@@ -14,6 +14,7 @@ class PostSeeder extends Seeder
     public function run()
     {
         //
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         DB::table('posts')->truncate();
 
         $posts = [];
@@ -36,7 +37,9 @@ class PostSeeder extends Seeder
                 'image' => rand(0,1) == 1 ? $image: NULL,
                 'created_at' => $createddDate,
                 'updated_at' => $createddDate,
-                'published_at' => $i < 5 ? $publishedDate : ( rand(0,1) == 0 ? NULL : $publishedDate->addDays(4) )
+                'published_at' => $i < 5 ? $publishedDate : ( rand(0,1) == 0 ? NULL : $publishedDate->addDays(4) ),
+                'category_id' => rand(1,5)
+                
 
             ];
         }
